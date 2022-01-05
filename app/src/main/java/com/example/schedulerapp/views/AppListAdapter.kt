@@ -10,6 +10,12 @@ import androidx.recyclerview.widget.RecyclerView
 import com.example.schedulerapp.R
 import com.example.schedulerapp.listeners.ItemClickListener
 import com.plcoding.mvvmtodoapp.data.AppInfo
+import android.content.pm.PackageManager
+
+import android.graphics.drawable.Drawable
+
+
+
 
 
 class AppListAdapter() : RecyclerView.Adapter<AppListAdapter.AppViewHolder>() {
@@ -36,6 +42,14 @@ class AppListAdapter() : RecyclerView.Adapter<AppListAdapter.AppViewHolder>() {
     override fun onBindViewHolder(holder: AppViewHolder, position: Int) {
         val data: AppInfo = installedApps!![position]
 //        holder.iv_logo.setImageDrawable(data.app_icon())
+        try {
+            val icon: Drawable =
+                context!!.getPackageManager().getApplicationIcon(data.app_package_name)
+            holder.iv_logo.setImageDrawable(icon)
+        } catch (e: PackageManager.NameNotFoundException) {
+            e.printStackTrace()
+        }
+
         holder.tv_name.setText(data.app_name)
         holder.tv_packagename.setText(data.app_package_name)
 

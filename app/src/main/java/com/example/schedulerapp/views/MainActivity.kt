@@ -44,16 +44,17 @@ class MainActivity : AppCompatActivity(), ItemClickListener {
     private fun getAppList(): List<AppInfo>? {
         val pm = packageManager
         val apps: MutableList<AppInfo> = ArrayList()
-        val packs = packageManager.getInstalledPackages(0)
+//        val packs = packageManager.getInstalledPackages(0)
+        val packs = packageManager.getInstalledApplications(PackageManager.GET_META_DATA)
+//        context.getPackageManager().getInstalledApplications(PackageManager.GET_META_DATA);
+
         //List<PackageInfo> packs = getPackageManager().getInstalledPackages(PackageManager.GET_PERMISSIONS);
-        for (i in packs.indices) {
-            val p = packs[i]
-            if (!isSystemPackage(p)) {
-                val appName = p.applicationInfo.loadLabel(packageManager).toString()
-                val icon = p.applicationInfo.loadIcon(packageManager)
-                val packages = p.applicationInfo.packageName
-                apps.add(AppInfo(appName, packages, ""+icon, false, Date()))
-            }
+
+        for (p in packs) {
+            val appName = p.loadLabel(packageManager).toString()
+            val icon = p.loadIcon(packageManager)
+            val packages = p.packageName
+            apps.add(AppInfo(appName, packages, ""+icon, false, Date()))
         }
         return apps
     }

@@ -3,22 +3,22 @@ package com.plcoding.mvvmtodoapp.data
 import kotlinx.coroutines.flow.Flow
 
 class AppInfoRepositoryImpl(
-    private val dao: TodoDao
+    private val dao: AppInfoDao
 ): AppInfoRepository {
 
-    override suspend fun insertTodo(todo: Todo) {
-        dao.insertTodo(todo)
+    override suspend fun insertAppInfo(appInfo: AppInfo) {
+        dao.insertAppInfo(appInfo)
     }
 
-    override suspend fun deleteTodo(todo: Todo) {
-        dao.deleteTodo(todo)
+    override suspend fun deleteAppInfo(appInfo: AppInfo) {
+        dao.deleteAppInfo(appInfo)
     }
 
-    override suspend fun getTodoById(id: Int): Todo? {
-        return dao.getTodoById(id)
+    override suspend fun getAppInfoById(id: Int): AppInfo? {
+        return dao.getAppInfoById(id)
     }
 
-    override fun getTodos(): Flow<List<Todo>> {
-        return dao.getTodos()
+    override fun getAppInfoList(): Flow<List<AppInfo>> {
+        return dao.getAppInfoList()
     }
 }

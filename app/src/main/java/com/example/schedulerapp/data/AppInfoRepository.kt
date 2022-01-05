@@ -4,11 +4,11 @@ import kotlinx.coroutines.flow.Flow
 
 interface AppInfoRepository {
 
-    suspend fun insertTodo(todo: Todo)
+    suspend fun insertAppInfo(appInfo: AppInfo)
 
-    suspend fun deleteTodo(todo: Todo)
+    suspend fun deleteAppInfo(appInfo: AppInfo)
 
-    suspend fun getTodoById(id: Int): Todo?
+    suspend fun getAppInfoById(id: Int): AppInfo?
 
-    fun getTodos(): Flow<List<Todo>>
+    fun getAppInfoList(): Flow<List<AppInfo>>
 }

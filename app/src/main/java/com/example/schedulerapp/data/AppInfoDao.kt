@@ -4,17 +4,17 @@ import androidx.room.*
 import kotlinx.coroutines.flow.Flow
 
 @Dao
-interface TodoDao {
+interface AppInfoDao {
 
     @Insert(onConflict = OnConflictStrategy.REPLACE)
-    suspend fun insertTodo(todo: Todo)
+    suspend fun insertAppInfo(appInfo: AppInfo)
 
     @Delete
-    suspend fun deleteTodo(todo: Todo)
+    suspend fun deleteAppInfo(appInfo: AppInfo)
 
-    @Query("SELECT * FROM todo WHERE id = :id")
-    suspend fun getTodoById(id: Int): Todo?
+    @Query("SELECT * FROM app_info WHERE id = :id")
+    suspend fun getAppInfoById(id: Int): AppInfo?
 
-    @Query("SELECT * FROM todo")
-    fun getTodos(): Flow<List<Todo>>
+    @Query("SELECT * FROM app_info")
+    fun getAppInfoList(): Flow<List<AppInfo>>
 }
